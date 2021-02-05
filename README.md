@@ -42,7 +42,7 @@ It creates a WebTarget Builder which can be used to issue REST calls against the
 
 If the tokens are successfully exchanged, they are persisted again in the configuration JSON file.
 
-In order to initialze the token authentication, pick the generated file from above (oauthclient) and put it into the folder `current startdirectory>/credentials`.
+In order to initialze the token authentication, pick the generated file from above (oauthclient) and put it into the folder `<current startdirectory>/credentials`.
 
 <img src="https://raw.githubusercontent.com/brandmaker/oAuthExamples/master/authenticate.png"  widh="50%" height="50%">
 
