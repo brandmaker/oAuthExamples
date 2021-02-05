@@ -1,0 +1,41 @@
+##
+#
+# Application settings for Demo Web Hook 
+#
+# (c) BardnMaker GmbH, March 2020
+#
+##
+ 
+spring:
+     security:
+        user:
+           name: admin
+           password: admin
+           
+     application:
+          name: BrandMaker oAuth2 Client Generator
+          
+          system:
+          
+              # base path to store the files in. "./" means current dir where the app is started. 
+              # Path must contain a trailing slash ("/"). Path sep is always forward slash ("/")
+              basepath: ./credentials/
+              cas-url: https://cas-dev.brandmaker.com
+          
+     server:
+          port: 8080
+          # we leave that as it is
+          
+          address: 0.0.0.0
+          # listen on all interfaces
+          # if this is a local dev machine, and you have a port forwarding enabled to that, ensure the Win10/Mac FW isn't blocking that!
+          # if your port is different from 80, please contact BM support to open that port in the FW for outgoing connections on your instance as well!
+          
+springdoc:
+     swagger-ui:
+          path: /api-docs.html
+          
+          
+logging:
+   level:
+      root: INFO
