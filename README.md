@@ -16,12 +16,17 @@ This example repo contains two sub-projects, which can be used in order to speed
 
 ### oauthclient
 
+This is a small Spring Boot application which provides a Web form where a user is able to put in alle the dtails about the token generation.
+On submitting the form, it will retrieve access and refresh tokens from the CAS server of BrandMaker.
+
+<img src="https://raw.githubusercontent.com/brandmaker/oAuthExamples/master/oauthclient.png" alt="Screenshot" width="50%"height="50%">
+
 ### authentication
 
 
 ## Prerequisits
 
-Please make yourself familiar with the oAuth flow described in the [BrandMaker documentaion](https://developers.brandmaker.com/guides/auth/#request-a-new-access-token-with-the-refresh-token) 
+Please make yourself familiar with the oAuth flow described in the [BrandMaker documentaion](https://developers.brandmaker.com/guides/auth/) 
 
 ### Environment
 
@@ -38,6 +43,5 @@ Furthermore, you need access to a BrandMaker instance with a user, who has acces
 ## Project state
 
 [![Build Status](https://travis-ci.org/brandmaker/oAuthExamples.svg?branch=master)](https://travis-ci.org/brandmaker/oAuthExamples)
-
 
 
