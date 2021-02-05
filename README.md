@@ -30,7 +30,8 @@ To start the application
 * the created tokens are stored in the file .../credentials/credentials.json in the current directory.
 
 The tokens can be picked from the above mentioned file. They will not be shown on the web pages as this would be a security risk!
-***Make sure, that no one is able to get a copy of your client secret and client ID as with this it is pssible to gain access to your BrandMaker instance***
+
+> ***Make sure, that no one is able to get a copy of your client secret and client ID as with this it is pssible to gain access to your BrandMaker instance***
 
 > Hint: the redirect must be an SSL URL (HTTPS). So either put this application behind an ssl enabled server like apache or nginx, or configure this spring boot application to use SSL. This cannot be done within this project, as it requires a verified domain name and server certificates for that.
 
