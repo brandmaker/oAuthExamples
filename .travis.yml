@@ -3,7 +3,7 @@ jdk:
   - openjdk11
  # git strips the wrapper jar file so we have to force its download during the build
 install:
-  - cd oAuthExamples
+  - cd oAuthExampleProject
   - ls -l
   - mvn -N io.takari:maven:wrapper
   - mvn clean package install -DskipTests=false -Dmaven.javadoc.skip=true -B -V
