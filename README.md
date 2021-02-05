@@ -24,7 +24,7 @@ On submitting the form, it will retrieve access and refresh tokens from the CAS 
 To start the application
 * go into the project directory .../oauthclient
 * run java -jar target/oauthclient-0.9.jar
-* open your web browser on https://<your server>:<ssl port> and fill in the form
+* open your web browser on https://&lt;your server>:&lt;ssl port> and fill in the form
 * hit "Generate". If everything is setup properly, you should be redirected to your BrandMaker instance in order to log in
 * confirm the consent
 * the created tokens are stored in the file .../credentials/credentials.json in the current directory.
@@ -36,6 +36,16 @@ The tokens can be picked from the above mentioned file. They will not be shown o
 
 ### authentication
 
+This package contains a wrapper around the [`JAX-RS client API`](https://docs.oracle.com/javaee/7/tutorial/jaxrs-client.htm) in order to connect with oAuth2 tokens to the API of a BrandMaker instance.
+It creates a WebTarget Builder which can be used to issue REST calls against the API. The builder has an integrated filter which handles the entire token validation and exchange if necessary. It checks on every request, whether the configured tokens are still valid and issues a token refresh if necessary. 
+
+If the tokens are successfully exchanged, they are persisted again in the configuration JSON file.
+
+In order to initialze the token authentication, pick the generated file from above (oauthclient) and put it into the folder `&lt;current startdirectory>/credentials`.
+
+<img src="https://raw.githubusercontent.com/brandmaker/oAuthExamples/master/authenticate.png"  widh="50%" height="50%">
+
+
 
 ## Prerequisits
 
@@ -45,6 +55,7 @@ Please make yourself familiar with the oAuth flow described in the [BrandMaker d
 
 * Java >= 11
 * Spring Boot
+* JAX-RS
 * Eclipse / IntelliJ
 * Maven
 * Github
