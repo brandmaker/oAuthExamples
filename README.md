@@ -42,14 +42,33 @@ It creates a WebTarget Builder which can be used to issue REST calls against the
 
 If the tokens are successfully exchanged, they are persisted again in the configuration JSON file.
 
-<<<<<<< HEAD
-In order to initialze the token authentication, pick the generated file from above (oauthclient) and put it into the folder `current startdirectory>/credentials`.
-=======
 In order to initialze the token authentication, pick the generated file from above (oauthclient) and put it into the folder `<current startdirectory>/credentials`.
->>>>>>> branch 'master' of https://github.com/brandmaker/oAuthExamples.git
 
 <img src="https://raw.githubusercontent.com/brandmaker/oAuthExamples/master/authenticate.png"  widh="50%" height="50%">
 
+The package `com/brandmaker/authentication/run/` contains a `Main.java` class with an example of  an integration. As seen above, this can be executed in order to demonstrate the proper token exchange and log in.
+
+```
+		Builder request = ConnectionFactory.getInstance(credentialsFile)
+		
+							.init(Modules.MEDIA_POOL)
+							.setMethod("OPTIONS")
+							.setRestPath("/search")
+							.setMediaType("application/json")
+							
+							/* 
+							 * this will initialize JAX_RS entirely and returns a proper Builder to
+							 * configure and invoke the request
+							 */
+							.build();
+		
+		LOGGER.info("Doing the request against Media Pool");
+		Response response = request.get();
+		
+		LOGGER.info("result " + response.getStatus());
+		String d = response.readEntity(String.class);
+		LOGGER.info("Response content: " + (d.length() > 200 ? d.substring(0, 200) + "... total of " + d.length() : d) );
+```
 
 
 ## Prerequisits
