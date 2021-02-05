@@ -9,5 +9,6 @@
   <modules>
   	<module>authentication</module>
   	<module>oauthsetup</module>
+  	<module>oauthclient</module>
   </modules>
 </project>
