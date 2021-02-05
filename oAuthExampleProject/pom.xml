@@ -6,4 +6,8 @@
   <packaging>pom</packaging>
   <name>oAuthExampleProject</name>
   <description>oAuthExampleProject</description>
+  <modules>
+  	<module>authentication</module>
+  	<module>oauthsetup</module>
+  </modules>
 </project>
