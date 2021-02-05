@@ -1,14 +1,32 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>BrandMaker.oAuthExampleProject</groupId>
-  <artifactId>oAuthExampleProject</artifactId>
-  <version>0.9</version>
-  <packaging>pom</packaging>
-  <name>oAuthExampleProject</name>
-  <description>oAuthExampleProject</description>
-  <modules>
-  	<module>authentication</module>
-  	<module>oauthsetup</module>
-  	<module>oauthclient</module>
-  </modules>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>BrandMaker.oAuthExampleProject</groupId>
+	<artifactId>oAuthExampleProject</artifactId>
+	<version>0.9</version>
+	<packaging>pom</packaging>
+	<name>oAuthExampleProject</name>
+	<description>oAuthExampleProject</description>
+
+	<organization>
+		<name>BrandMaker GmbH</name>
+		<url>http://www.brandmaker.com/</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<name>Axel Amthor</name>
+			<id>axel.amthor</id>
+			<email>axel.amthor@brandmaker.com</email>
+			<organization>BrandMaker GmbH</organization>
+		</developer>
+	</developers>
+
+	<modules>
+		<module>authentication</module>
+		<module>oauthclient</module>
+	</modules>
+
 </project>
