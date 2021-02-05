@@ -19,7 +19,7 @@ This example repo contains two sub-projects, which can be used in order to speed
 This is a small Spring Boot application which provides a Web form where a user is able to put in alle the dtails about the token generation.
 On submitting the form, it will retrieve access and refresh tokens from the CAS server of BrandMaker.
 
-<img src="https://raw.githubusercontent.com/brandmaker/oAuthExamples/master/oauthclient.png" alt="Screenshot" width="50%" height="50%">
+<img src="https://raw.githubusercontent.com/brandmaker/oAuthExamples/master/oauthclient.png?token=AAWPOBF7XYB2ZSNP3NI7ND3ADUMDC" alt="Screenshot" width="50%" height="50%">
 
 ### authentication
 
