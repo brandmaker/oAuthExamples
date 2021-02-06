@@ -9,6 +9,7 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.ClientRequestContext;
 import javax.ws.rs.client.ClientRequestFilter;
 import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.Invocation.Builder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Form;
@@ -22,9 +23,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.brandmaker.authentication.modules.Connections;
-import com.brandmaker.authentication.modules.Connections.*;
+import com.brandmaker.authentication.modules.Connections.Modules;
 import com.brandmaker.authentication.utils.CredentialsFileHandler;
-import com.brandmaker.authentication.utils.CredentialsFileHandlerImpl;
 import com.brandmaker.authentication.utils.OAuth2Credentials;
 
 public class ConnectionFactoryImpl implements ConnectionFactory {
@@ -80,10 +80,19 @@ public class ConnectionFactoryImpl implements ConnectionFactory {
 	 */
 	public static class BrandMakerRequestAuthenticationFilter implements ClientRequestFilter {
 
+		/**
+		 * we exchange the token at least about GRACEPERIOD milliseconds before it might expire to be safe.
+		 */
 		private static final long GRACEPERIOD = 2*60*1000; // 2 minutes in milliseconds
-
+		
+		/** the authorization header name */
+		private static final String AUTHORIZATION_HEADER = "Authorization";
+		
+		@SuppressWarnings("deprecation")
 		@Override
 		public void filter(ClientRequestContext requestContext) throws IOException {
+			
+			LOGGER.info("In request filter: check token, refresh if necessary, add Authorizaion header to this request");
 			
 			long tokenExpiration = credentials.getExpires();
 			long now = System.currentTimeMillis();
@@ -94,10 +103,19 @@ public class ConnectionFactoryImpl implements ConnectionFactory {
 				updateTokens();
 			}
 			else
-				LOGGER.info("Token expires at "  + (new Date(tokenExpiration)).toGMTString() );
+				LOGGER.info("Token valid, expires on "  + (new Date(tokenExpiration)).toGMTString() );
 			
-			requestContext.getHeaders().add("Authorization", "Bearer " + credentials.getToken() );
-			LOGGER.info("--------------- here we go in the filter");
+			/*
+			 * retrieve the mutual header object and add a new generated Authorization header to this request.
+			 * As there must only be one Authorization header in the request, we delete previous ones first
+			 */
+			requestContext.getHeaders().remove(AUTHORIZATION_HEADER);
+			requestContext.getHeaders().add(AUTHORIZATION_HEADER, "Bearer " + credentials.getToken() );
+			
+			/*
+			 * Set the request method of this request.
+			 */
+//			requestContext.setMethod(method);
 		}
 
 		/**
@@ -161,6 +179,13 @@ public class ConnectionFactoryImpl implements ConnectionFactory {
 	        	 */
 	        	credentials.setToken(tokens.getString("access_token"));
 	        	credentials.setRefresh(tokens.getString("refresh_token"));
+	        	
+	        	/*
+	        	 * we are getting an "expires_in" property from the CAS server. That won't help at a later time unless we now when the token has been issued.
+	        	 * So we need to calculate an exact expiration time. Additionally we subtract a "grace period" of two minutes from that later on in order 
+	        	 * to not run into "expired token errors".
+	        	 * 
+	        	 */
 	        	credentials.setExpires( (tokens.getLong("expires_in")*1000) + System.currentTimeMillis());
 	        	
 	        	File credentialsFile = new File("./credentials/credentials.json");
@@ -172,7 +197,6 @@ public class ConnectionFactoryImpl implements ConnectionFactory {
 
 	@Override
 	public Builder build() {
-		
 		
 		/*
          * we could easily add an authentication header here, but between this build() call and the invocation itself may some time be elapsed and 
@@ -206,8 +230,16 @@ public class ConnectionFactoryImpl implements ConnectionFactory {
         
         this.requestBuilder = target.request();
         
+        requestBuilder.accept(MediaType.valueOf(mimeType));
         
         return requestBuilder;
+		
+	}
+	
+	@Override
+	public Invocation invoke() {
+		
+		return this.requestBuilder.build(method);
 		
 	}
 

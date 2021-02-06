@@ -23,6 +23,7 @@ public class Main {
 		
 		File credentialsFile = new File("./credentials/credentials.json");
 		
+		LOGGER.info("\n=======================\n");
 		/*
 		 * Create an "OPTIONS" call against Media Pool search API
 		 */
@@ -30,7 +31,7 @@ public class Main {
 		
 							.init(Modules.MEDIA_POOL)
 							.setMethod("OPTIONS")
-							.setRestPath("/search")
+							.setRestPath("/v1.1/search")
 							.setMediaType("application/json")
 							
 							/* 
@@ -40,16 +41,36 @@ public class Main {
 							.build();
 		
 		LOGGER.info("Doing the request against Media Pool");
-		Response response = request.get();
+		Response response = request.options();
 		
 		LOGGER.info("result " + response.getStatus());
 		String d = response.readEntity(String.class);
 		LOGGER.info("Response content: " + (d.length() > 200 ? d.substring(0, 200) + "... total of " + d.length() : d) );
 		
 		
+		LOGGER.info("\n=======================\n");
 		/*
-		 * Create a GET call against MaPl years endpoint
+		 * Create a GET call against Marketing Planner years end-point
 		 */
+		request = ConnectionFactory.getInstance(credentialsFile)
+				
+				.init(Modules.PLANNER)
+				.setMethod("GET")
+				.setRestPath("/tree")
+				.setMediaType("application/json")
+				
+				/* 
+				 * this will initialize JAX_RS entirely and returns a proper Builder to
+				 * configure and invoke the request
+				 */
+				.build();
+
+		LOGGER.info("Doing the request against Marketing Planner");
+		response = request.get();
+		
+		LOGGER.info("result " + response.getStatus());
+		String data = response.readEntity(String.class);
+		LOGGER.info("Response content: " + (data.length() > 200 ? data.substring(0, 200) + "... total of " + data.length() : data) );
 		
 	}
 

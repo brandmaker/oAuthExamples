@@ -15,6 +15,9 @@ public class Connections {
 			case MEDIA_POOL:
 				return "/rest/mp"; // mind the leading "/"!
 				
+			case PLANNER:
+				return "/maps/rest/api/v3.6";
+				
 			default:
 				return "/";
 			
