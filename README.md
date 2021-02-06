@@ -78,12 +78,13 @@ Please make yourself familiar with the oAuth flow described in the [BrandMaker d
 ### Environment
 
 * Java >= 11
-* Spring Boot
-* JAX-RS
+* [Spring Boot 2.4.2](https://spring.io/projects/spring-boot)
+* [Thymeleaf](https://www.thymeleaf.org/)
+* [JAX-RS](https://github.com/jax-rs)
 * Eclipse / IntelliJ
 * Maven
 * Github
-* Travis-CI https://travis-ci.org/getting_started
+* [Travis-CI](https://travis-ci.org/getting_started)
 
 Furthermore, you need access to a BrandMaker instance with a user, who has access rights to Administartion in order to create a new registered App.
 
