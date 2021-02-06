@@ -53,7 +53,7 @@ The package `com/brandmaker/authentication/run/` contains a `Main.java` class wi
 		
 							.init(Modules.MEDIA_POOL)
 							.setMethod("OPTIONS")
-							.setRestPath("/search")
+							.setRestPath("/v1.1/search")
 							.setMediaType("application/json")
 							
 							/* 
@@ -63,7 +63,7 @@ The package `com/brandmaker/authentication/run/` contains a `Main.java` class wi
 							.build();
 		
 		LOGGER.info("Doing the request against Media Pool");
-		Response response = request.get();
+		Response response = request.options();
 		
 		LOGGER.info("result " + response.getStatus());
 		String d = response.readEntity(String.class);
