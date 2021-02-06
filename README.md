@@ -23,8 +23,8 @@ On submitting the form, it will retrieve access and refresh tokens from the CAS 
 
 To start the application
 * go into the project directory .../oauthclient
-* run java -jar target/oauthclient-0.9.jar
-* open your web browser on https://&lt;your server>:&lt;ssl port> and fill in the form
+* run `java -jar target/oauthclient-0.9.jar`
+* open your web browser on `https://&lt;your server>:&lt;ssl port>` and fill in the form
 * hit "Generate". If everything is setup properly, you should be redirected to your BrandMaker instance in order to log in
 * confirm the consent
 * the created tokens are stored in the file `.../credentials/credentials.json` in the current directory.
