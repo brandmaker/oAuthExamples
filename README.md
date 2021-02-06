@@ -33,7 +33,7 @@ The tokens can be picked from the above mentioned file. They will not be shown o
 
 > ***Make sure, that no one is able to get a copy of your client secret and client ID as with this it is pssible to gain access to your BrandMaker instance***
 
-> Hint: the redirect must be an SSL URL (HTTPS). So either put this application behind an ssl enabled server like apache or nginx, or configure this spring boot application to use SSL. This cannot be done within this project, as it requires a verified domain name and server certificates for that.
+> Hint: the redirect must be an SSL URL (HTTPS). So either put this application behind an ssl enabled server like apache or nginx, or configure this spring boot application to use SSL. This cannot be done within this project, as it requires a verified domain name and server certificates for that. Self-signed certificates on an IP address won't work together with BarndMaker IAM. A `loclahost`address may also not work as this won't be reachable for the BrandMaker CAS service from the outside.
 
 ### authentication
 
