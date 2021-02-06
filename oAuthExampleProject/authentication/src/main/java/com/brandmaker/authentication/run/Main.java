@@ -29,16 +29,16 @@ public class Main {
 		 */
 		Builder request = ConnectionFactory.getInstance(credentialsFile)
 		
-							.init(Modules.MEDIA_POOL)
-							.setMethod("OPTIONS")
-							.setRestPath("/v1.1/search")
-							.setMediaType("application/json")
-							
-							/* 
-							 * this will initialize JAX_RS entirely and returns a proper Builder to
-							 * configure and invoke the request
-							 */
-							.build();
+			.init(Modules.MEDIA_POOL)
+			.setMethod("OPTIONS")
+			.setRestPath("/v1.1/search")
+			.setMediaType("application/json")
+			
+			/* 
+			 * this will initialize JAX_RS entirely and returns a proper Builder to
+			 * configure and invoke the request
+			 */
+			.build();
 		
 		LOGGER.info("Doing the request against Media Pool");
 		Response response = request.options();
@@ -59,11 +59,6 @@ public class Main {
 			.setMethod("GET")
 			.setRestPath("/tree")
 			.setMediaType("application/json")
-			
-			/* 
-			 * this will initialize JAX_RS entirely and returns a proper Builder to
-			 * configure and invoke the request
-			 */
 			.build();
 
 		LOGGER.info("Doing the request against Marketing Planner");
