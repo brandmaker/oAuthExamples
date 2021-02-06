@@ -4,7 +4,7 @@
 
 ## Motivation
 
-Developers who want to make calls to the BrandMaker module APIs need proper oAuth2 registration of thier application or service and need to authenticate
+Developers who want to make calls to the BrandMaker module APIs need proper oAuth2 registration of their application or service and need to authenticate
 by the provided oAuth2 access tokens.
 
 ## Scope
@@ -16,7 +16,7 @@ This example repo contains two sub-projects, which can be used in order to speed
 
 ### oauthclient
 
-This is a small Spring Boot application which provides a Web form where a user is able to put in alle the dtails about the token generation.
+This is a small Spring Boot application which provides a web form where a user is able to put in alle the details about the token generation.
 On submitting the form, it will retrieve access and refresh tokens from the CAS server of BrandMaker.
 
 <img src="https://raw.githubusercontent.com/brandmaker/oAuthExamples/master/oauthclient.png" alt="Screenshot" width="50%" height="50%">
@@ -27,7 +27,7 @@ To start the application
 * open your web browser on https://&lt;your server>:&lt;ssl port> and fill in the form
 * hit "Generate". If everything is setup properly, you should be redirected to your BrandMaker instance in order to log in
 * confirm the consent
-* the created tokens are stored in the file .../credentials/credentials.json in the current directory.
+* the created tokens are stored in the file `.../credentials/credentials.json` in the current directory.
 
 The tokens can be picked from the above mentioned file. They will not be shown on the web pages as this would be a security risk!
 
