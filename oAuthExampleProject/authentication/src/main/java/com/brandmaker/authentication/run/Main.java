@@ -52,21 +52,22 @@ public class Main {
 		/*
 		 * Create a GET call against Marketing Planner years end-point
 		 */
-		request = ConnectionFactory.getInstance(credentialsFile)
+		ConnectionFactory connectionFactory = ConnectionFactory.getInstance(credentialsFile);
+		connectionFactory
 				
-				.init(Modules.PLANNER)
-				.setMethod("GET")
-				.setRestPath("/tree")
-				.setMediaType("application/json")
-				
-				/* 
-				 * this will initialize JAX_RS entirely and returns a proper Builder to
-				 * configure and invoke the request
-				 */
-				.build();
+			.init(Modules.PLANNER)
+			.setMethod("GET")
+			.setRestPath("/tree")
+			.setMediaType("application/json")
+			
+			/* 
+			 * this will initialize JAX_RS entirely and returns a proper Builder to
+			 * configure and invoke the request
+			 */
+			.build();
 
 		LOGGER.info("Doing the request against Marketing Planner");
-		response = request.get();
+		response = connectionFactory.getInvoker().invoke();
 		
 		LOGGER.info("result " + response.getStatus());
 		String data = response.readEntity(String.class);

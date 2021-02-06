@@ -9,6 +9,8 @@ import com.brandmaker.authentication.modules.Connections;
 import com.brandmaker.authentication.modules.Connections.Modules;
 import com.brandmaker.authentication.utils.OAuth2Credentials;
 
+import sun.awt.shell.ShellFolder.Invoker;
+
 /**
  * <p>A wrapper class for JAX-RS
  * <p>This class wraps all necessary settings to issue API calls to a BrandMaker module such as Media Pool or MArketing Planner.
@@ -53,6 +55,8 @@ public interface ConnectionFactory {
 	 * On invoking any request based on this builder, the token authentication will be handled internally 
 	 * and automatically, as well as necessary token refresh and token persistance.
 	 * 
+	 * @see {@link Builder}
+	 * 
 	 * @return fully initialized request builder
 	 */
 	Builder build();
@@ -91,10 +95,11 @@ public interface ConnectionFactory {
 
 	/**
 	 * Create an invoker based on the given settings in this class.
+	 * @see {@link Invocation}
 	 * 
-	 * @return
+	 * @return Invoker
 	 */
-	Invocation invoke();
+	Invocation getInvoker();
 	
 
 }

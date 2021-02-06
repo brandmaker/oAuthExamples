@@ -32,7 +32,7 @@ public class ConnectionFactoryImpl implements ConnectionFactory {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ConnectionFactory.class);
 	private static OAuth2Credentials credentials;
 	private Modules module;
-	private String method;
+	private static String method;
 	private String restPath;
 	private String mimeType;
 	private Builder requestBuilder;
@@ -115,7 +115,7 @@ public class ConnectionFactoryImpl implements ConnectionFactory {
 			/*
 			 * Set the request method of this request.
 			 */
-//			requestContext.setMethod(method);
+			requestContext.setMethod(method);
 		}
 
 		/**
@@ -237,7 +237,7 @@ public class ConnectionFactoryImpl implements ConnectionFactory {
 	}
 	
 	@Override
-	public Invocation invoke() {
+	public Invocation getInvoker() {
 		
 		return this.requestBuilder.build(method);
 		
