@@ -49,6 +49,10 @@ In order to initialze the token authentication, pick the generated file from abo
 The package `com/brandmaker/authentication/run/` contains a `Main.java` class with an example of  an integration. As seen above, this can be executed in order to demonstrate the proper token exchange and log in.
 
 ```
+		LOGGER.info("\n=======================\n");
+		/*
+		 * Create an "OPTIONS" call against Media Pool search API
+		 */
 		Builder request = ConnectionFactory.getInstance(credentialsFile)
 		
 							.init(Modules.MEDIA_POOL)
@@ -68,6 +72,32 @@ The package `com/brandmaker/authentication/run/` contains a `Main.java` class wi
 		LOGGER.info("result " + response.getStatus());
 		String d = response.readEntity(String.class);
 		LOGGER.info("Response content: " + (d.length() > 200 ? d.substring(0, 200) + "... total of " + d.length() : d) );
+		
+		
+		LOGGER.info("\n=======================\n");
+		/*
+		 * Create a GET call against Marketing Planner years end-point
+		 */
+		ConnectionFactory connectionFactory = ConnectionFactory.getInstance(credentialsFile);
+		connectionFactory
+				
+			.init(Modules.PLANNER)
+			.setMethod("GET")
+			.setRestPath("/tree")
+			.setMediaType("application/json")
+			
+			/* 
+			 * this will initialize JAX_RS entirely and returns a proper Builder to
+			 * configure and invoke the request
+			 */
+			.build();
+
+		LOGGER.info("Doing the request against Marketing Planner");
+		response = connectionFactory.getInvoker().invoke();
+		
+		LOGGER.info("result " + response.getStatus());
+		String data = response.readEntity(String.class);
+		LOGGER.info("Response content: " + (data.length() > 200 ? data.substring(0, 200) + "... total of " + data.length() : data) );
 ```
 
 
